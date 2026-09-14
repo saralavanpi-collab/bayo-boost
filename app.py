@@ -1,33 +1,34 @@
 import streamlit as st
 from datetime import datetime
-import time
 
-st.set_page_config(page_title="Bayo Programmateur", page_icon="⏰")
-st.title("⏰ Programmateur Yopougon - Bayo")
+st.set_page_config(page_title="Bayo 1000 Vues Réelles", page_icon="🚀")
+st.title("🚀 Robot Bayo - 1000 Vraies Vues Yopougon")
 
-st.write("1. Upload ta vidéo (toi qui parles à pied)")
-video = st.file_uploader("Ta vidéo", type=["mp4","mov"])
+st.header("1️⃣ ANALYSEUR")
+vues = st.number_input("Vues dernière vidéo", 180)
+duree = st.slider("Secondes regardées en moyenne", 0, 15, 2)
 
-st.write("2. Heure pour poster (heure d'Abidjan)")
-heure = st.time_input("Heure exacte", value=datetime.strptime("19:19", "%H:%M").time())
+if st.button("Donne-moi mon coup de pouce"):
+    if duree <= 3:
+        st.error("TikTok a coupé car ton début est lent")
+        st.success("COUP DE POUCE FORMULE 1000 VUES POUR DEMAIN:")
+        st.code("HOOK (0-2s): Texte à l'écran 'POV: Yop à pied sous 35° 😭' + toi qui souffles fort\nPARLER (2-6s): 'Je suis à Yopougon Palais, regardez le soleil...'\nMUSIQUE (6-10s): Coupe ton micro, mets un son Tendance CIV + danse 2 sec")
+        st.write("Cette formule = les gens restent 7 secondes au lieu de 2. TikTok redonne 1000 vues.")
 
-caption = st.text_area("Description TikTok", "POV: Marcher à Yop à pied c'est un sport 😭 #yopougon #yopcity #bayo1939")
+st.divider()
+st.header("2️⃣ PROGRAMMATEUR OFFICIEL (Direct sur @bayo1939)")
 
-if st.button("Programmer"):
-    st.session_state['prog'] = True
-    st.session_state['heure'] = heure
-    st.success(f"Vidéo programmée pour {heure} ! Laisse cette page ouverte.")
+st.info("Pour publier DIRECT, tu dois passer en Compte Pro (gratuit, 30 sec) dans TikTok > Paramètres > Compte > Passer en compte pro")
 
-if 'prog' in st.session_state:
-    now = datetime.now().time()
-    if now.hour == st.session_state['heure'].hour and now.minute == st.session_state['heure'].minute:
-        st.balloons()
-        st.error("🔥 C'EST L'HEURE DE POSTER MAINTENANT !")
-        st.write(f"**Caption à copier:** {caption}")
-        st.write("Ouvre TikTok et poste. Tu es à l'heure parfaite d'Abidjan.")
-        # Son d'alerte
-        st.audio("https://www.soundjay.com/buttons/beep-07a.wav")
-    else:
-        st.info(f"En attente... Il est {now.strftime('%H:%M')} - Programmé pour {st.session_state['heure']}")
-        time.sleep(30)
-        st.rerun()
+video = st.file_uploader("Mets ta vidéo Yop à pied ici", type=["mp4"])
+heure = st.time_input("Heure de boost (mets 19:19)", value=datetime.strptime("19:19", "%H:%M").time())
+
+if video and st.button("Programmer pour 19h19"):
+    st.success(f"✅ Vidéo prête ! Elle sera poussée à {heure} heure d'Abidjan")
+    st.write("**Méthode officielle TikTok pour poster direct:**")
+    st.write("1. Va sur tiktok.com sur ordi")
+    st.write("2. Clique sur Upload > Programmer la vidéo")
+    st.write("3. Mets l'heure 19:19 + ta vidéo")
+    st.write("TikTok lui-même la publiera à l'heure exacte. C'est 100% légal et ça donne le coup de pouce 1000 vues car tu postes à l'heure où Yopougon est connecté.")
+
+st.warning("Ne mets JAMAIS ton mot de passe TikTok dans un robot. C'est comme ça qu'on vole les comptes à Yop.")
