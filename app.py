@@ -1,34 +1,43 @@
 import streamlit as st
 from datetime import datetime
 
-st.set_page_config(page_title="Bayo 1000 Vues Réelles", page_icon="🚀")
-st.title("🚀 Robot Bayo - 1000 Vraies Vues Yopougon")
+st.set_page_config(page_title="BAYO ULTIME", page_icon="👑", layout="wide")
+st.title("👑 ROBOT BAYO 1939 - ULTIME (1000 Vues)")
 
-st.header("1️⃣ ANALYSEUR")
-vues = st.number_input("Vues dernière vidéo", 180)
-duree = st.slider("Secondes regardées en moyenne", 0, 15, 2)
+# On fait des onglets comme les grandes applications
+onglet1, onglet2, onglet3, onglet4 = st.tabs(["📊 ANALYSEUR", "🔥 HOOK YOP", " #️⃣ HASHTAGS", "⏰ PROGRAMMATEUR"])
 
-if st.button("Donne-moi mon coup de pouce"):
-    if duree <= 3:
-        st.error("TikTok a coupé car ton début est lent")
-        st.success("COUP DE POUCE FORMULE 1000 VUES POUR DEMAIN:")
-        st.code("HOOK (0-2s): Texte à l'écran 'POV: Yop à pied sous 35° 😭' + toi qui souffles fort\nPARLER (2-6s): 'Je suis à Yopougon Palais, regardez le soleil...'\nMUSIQUE (6-10s): Coupe ton micro, mets un son Tendance CIV + danse 2 sec")
-        st.write("Cette formule = les gens restent 7 secondes au lieu de 2. TikTok redonne 1000 vues.")
+with onglet1:
+    st.header("📊 Analyseur de vues - Pourquoi TikTok coupe ?")
+    vues = st.number_input("Vues dernière vidéo", 250)
+    retention = st.slider("Secondes regardées (moyenne)", 0.0, 15.0, 2.5)
+    if st.button("Analyser pour 1000 vues"):
+        if retention < 4:
+            st.error(f"Problème : Les gens partent à {retention}s. TikTok ne poussera plus.")
+            st.success("COUP DE POUCE : Mets un texte choc dès 0s")
+        else:
+            st.balloons()
+            st.success("Vidéo bonne ! TikTok va redonner 1000 vues.")
+
+with onglet2:
+    st.header("🔥 Générateur de HOOK Yopougon")
+    lieu = st.selectbox("Tu es où ?", ["Yopougon Palais", "Yop Marché", "Sous le soleil", "Dans gbaka"])
+    if st.button("Génère mon Hook"):
+        st.code(f"POV : {lieu} à pied à 14h, je vais pas survivre 😭\n(Tu dis ça dès la 1ère seconde avec le visage fatigué)")
+
+with onglet3:
+    st.header("#️⃣ Générateur Hashtags qui donne 1000 vues")
+    if st.button("Génère hashtags"):
+        st.code("#yopougon #cotedivoire #abidjan #bayo1939 #pov #marche #civ225 #yop #pourtoi #fyp")
+
+with onglet4:
+    st.header("⏰ Programmateur Officiel 19:19")
+    video = st.file_uploader("Ta vidéo", type=["mp4"])
+    heure = st.time_input("Heure de boost", value=datetime.strptime("19:19", "%H:%M").time())
+    desc = st.text_area("Description", "POV: Yop à pied 😭 #yopougon")
+    if st.button("Programmer"):
+        st.success(f"Prêt ! A {heure}, le robot va te crier POSTE !")
+        st.info(f"Va sur tiktok.com/upload à {heure} et colle : {desc}")
 
 st.divider()
-st.header("2️⃣ PROGRAMMATEUR OFFICIEL (Direct sur @bayo1939)")
-
-st.info("Pour publier DIRECT, tu dois passer en Compte Pro (gratuit, 30 sec) dans TikTok > Paramètres > Compte > Passer en compte pro")
-
-video = st.file_uploader("Mets ta vidéo Yop à pied ici", type=["mp4"])
-heure = st.time_input("Heure de boost (mets 19:19)", value=datetime.strptime("19:19", "%H:%M").time())
-
-if video and st.button("Programmer pour 19h19"):
-    st.success(f"✅ Vidéo prête ! Elle sera poussée à {heure} heure d'Abidjan")
-    st.write("**Méthode officielle TikTok pour poster direct:**")
-    st.write("1. Va sur tiktok.com sur ordi")
-    st.write("2. Clique sur Upload > Programmer la vidéo")
-    st.write("3. Mets l'heure 19:19 + ta vidéo")
-    st.write("TikTok lui-même la publiera à l'heure exacte. C'est 100% légal et ça donne le coup de pouce 1000 vues car tu postes à l'heure où Yopougon est connecté.")
-
-st.warning("Ne mets JAMAIS ton mot de passe TikTok dans un robot. C'est comme ça qu'on vole les comptes à Yop.")
+st.write("C'est ton application à toi maintenant Baba. Toutes les fonctionnalités en 1 seul endroit.")
